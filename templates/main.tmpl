@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ SITE_TAGLINE }}">
+    <title>{{ SITE_TITLE }}{% block entry %} - {% ifdef TITLE %}{{ TITLE }}{% else %}{{ SITE_TAGLINE }}{% endif %}{% endblock %}{% block listing_once %} - News{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.0.0/dist/flatly/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ BASE_URL }}/assets/custom.css" rel="stylesheet" type="text/css">
+    <link href="{{ BASE_URL }}/atom.xml" rel="alternate" type="application/atom+xml" title="{{ SITE_TITLE }}" />
+  </head>
+  <body>
+    <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand" href="{{ BASE_URL }}/">{{ SITE_TITLE }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item{% if MAKE_SLUG == "index" %} active{% endif %}">
+              <a class="nav-link" href="{{ BASE_URL }}/">Home</a>
+            </li>
+            <li class="nav-item{% if MAKE_TYPE == "post" %} active{% endif %}">
+              <a class="nav-link" href="{{ BASE_URL }}/news/">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/rafaelmartins/squareball">GitHub</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          {% block listing %}
+          <article>
+            <h3><a href="{{ BASE_URL }}/news/{{ FILENAME }}/">{{ TITLE }}</a></h3>
+            {{ CONTENT }}
+            <div class="metadata card bg-light mb-4">
+              <div class="card-body p-2">
+                Author: <a href="mailto:{{ AUTHOR_EMAIL }}">{{ AUTHOR_NAME }}</a><br />
+                {% ifdef DATE_FORMATTED %}Published on: {{ DATE_FORMATTED }}<br />{% endif %}
+                <a href="{{ BASE_URL }}/news/{{ FILENAME }}/">Permalink</a>
+              </div>
+            </div>
+          </article>
+          {% endblock %}
+          {% block listing_once %}
+          <ul class="pagination justify-content-center">
+            <li class="page-item{% ifndef PREVIOUS_PAGE %} disabled{% endif %}">
+              <a class="page-link" href="{% ifdef PREVIOUS_PAGE %}{{ BASE_URL }}/news/page/{{ PREVIOUS_PAGE }}/{% else %}#{% endif %}">
+                &larr; Newer
+              </a>
+            </li>
+            <li class="page-item{% ifndef NEXT_PAGE %} disabled{% endif %}">
+              <a class="page-link" href="{% ifdef NEXT_PAGE %}{{ BASE_URL }}/news/page/{{ NEXT_PAGE }}/{% else %}#{% endif %}">
+                Older &rarr;
+              </a>
+            </li>
+          </ul>
+          {% endblock %}
+          {% block entry %}
+          <article>
+            {% ifdef TITLE %}<h3>{{ TITLE }}</h3>{% endif %}
+            {{ CONTENT }}
+            {% ifdef IS_POST %}
+            <div class="metadata card bg-light mb-4">
+              <div class="card-body p-2">
+                Author: <a href="mailto:{{ AUTHOR_EMAIL }}">{{ AUTHOR_NAME }}</a><br />
+                {% ifdef DATE_FORMATTED %}Published on: {{ DATE_FORMATTED }}<br />{% endif %}
+                <a href="{{ BASE_URL }}/news/{{ FILENAME }}/">Permalink</a>
+              </div>
+            </div>
+            {% endif %}
+          </article>
+          {% endblock %}
+        </div>
+        <div class="col-md-3 sidebar">
+          <div class="card border-light mb-3">
+            <div class="card-header">Latest Release</div>
+            <div class="list-group list-group-flush">
+              <div class="list-group-item" style="text-align: center; font-size: 1.4rem">
+                squareball-{{ LATEST_RELEASE }}
+              </div>
+              <a class="list-group-item list-group-item-action" href="https://github.com/rafaelmartins/squareball/releases/download/v{{ LATEST_RELEASE }}/squareball-{{ LATEST_RELEASE }}.tar.gz">
+                <strong>Source:</strong> squareball-{{ LATEST_RELEASE }}.tar.gz
+              </a>
+              <a class="list-group-item list-group-item-action" href="https://github.com/rafaelmartins/squareball/releases/download/v{{ LATEST_RELEASE }}/squareball-{{ LATEST_RELEASE }}.tar.bz2">
+                <strong>Source:</strong> squareball-{{ LATEST_RELEASE }}.tar.bz2
+              </a>
+              <a class="list-group-item list-group-item-action" href="https://github.com/rafaelmartins/squareball/releases/download/v{{ LATEST_RELEASE }}/squareball-{{ LATEST_RELEASE }}.tar.xz">
+                <strong>Source:</strong> squareball-{{ LATEST_RELEASE }}.tar.xz
+              </a>
+              <a class="list-group-item list-group-item-action" href="https://github.com/rafaelmartins/squareball/releases/download/v{{ LATEST_RELEASE }}/squareball-{{ LATEST_RELEASE }}.zip">
+                <strong>Source:</strong> squareball-{{ LATEST_RELEASE }}.zip
+              </a>
+              <a class="list-group-item list-group-item-action" href="https://packages.gentoo.org/package/dev-libs/squareball">
+                <strong>Gentoo:</strong> app-text/squareball
+              </a>
+              <a class="list-group-item list-group-item-action" href="https://copr.fedoraproject.org/coprs/rafaelmartins/squareball/">
+                <strong>Fedora/RHEL/CentOS:</strong> Copr
+              </a>
+              <a class="list-group-item list-group-item-action" href="https://github.com/rafaelmartins/squareball/releases/tag/v{{ LATEST_RELEASE }}">
+                <strong>More downloads on GitHub</strong>
+              </a>
+            </div>
+          </div>
+          <div class="card border-light mb-3">
+            <div class="card-header">API Documentation</div>
+            <div class="list-group list-group-flush">
+              <a class="list-group-item list-group-item-action" href="https://distfiles.rgm.io/squareball/squareball-{{ LATEST_RELEASE }}/docs/">
+                {{ LATEST_RELEASE }} (Latest release)
+              </a>
+              <a class="list-group-item list-group-item-action" href="https://distfiles.rgm.io/squareball/LATEST/docs/">
+                <code>master</code> (Latest commit, exp.)
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="copyright text-muted">
+            &copy; 2014-2018 <a href="mailto:{{ AUTHOR_EMAIL }}">{{ AUTHOR_NAME }}</a>.
+            Project released under a <a href="https://github.com/rafaelmartins/squareball/blob/master/LICENSE">BSD 3 clause license</a>.
+            Website powered by: <strong>blogc {{ BLOGC_VERSION }}</strong> |
+            <a href="https://rgm.io/imprint/" rel="nofollow">Impressum/Imprint</a></p>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
+<!--
+curl -s {{ BASE_DOMAIN }}{{ BASE_URL }}/ | grep '^LATEST_RELEASE=' | cut -d= -f2
+
+LATEST_RELEASE={{ LATEST_RELEASE }}
+-->

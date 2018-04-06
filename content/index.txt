@@ -1,0 +1,60 @@
+----------
+<div class="jumbotron">
+  <p class="lead">
+    <code>squareball</code> is a general-purpose library for C99.
+  </p>
+  <p>
+    <a class="btn btn-success" href="/news/" role="button">
+      Read latest news
+    </a>
+  </p>
+</div>
+
+<div class="row">
+<div class="col-md-6">
+
+#### squareball is simple...
+
+squareball was initially developed as a helper library for
+[blogc](https://blogc.rgm.io/), that was extracted afterwards, to allow it
+to be reused in other projects. `blogc` is simple, so `squareball` is simple
+as well. :)
+
+#### squareball is portable...
+
+`squareball` is often tested on Linux, and OSX, but the code should work
+on any POSIX-compliant operating system and Windows. Patches for portability
+are always welcome and have high priority. Some features may not be available
+for Windows, please check the documentation.
+
+</div>
+<div class="col-md-6">
+
+#### squareball is powerful...
+
+The routines implemented are simple, but yet optimized for the specific use
+cases described in the documentation.
+
+#### squareball is incomplete...
+
+Some implementations are incomplete, missing some functions that may be
+required for some use case. The first versions are strictly based on the
+code extracted from `blogc`, then only the functionality needed by `blogc`
+was implemented in most of the cases.
+
+</div>
+</div>
+
+
+### Frequently Asked Questions
+
+#### Why not just use something like `GLib`?
+
+`GLib` was released under the LGPL, we wanted our code to be released under the
+BSD 3 clause license. Also, implementing these algorithms is a fun exercise. :)
+
+#### What the name "squareball" means?
+
+`squareball` library name is a tribute to [Quico](http://hero.wikia.com/wiki/Quico),
+that was Carlos Villagrán's character in the Mexican television sitcom *El Chavo
+del Ocho*. Unfortunately Quico never got his promised square ball. :-(
