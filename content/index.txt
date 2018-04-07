@@ -4,7 +4,7 @@
     <code>squareball</code> is a general-purpose library for C99.
   </p>
   <p>
-    <a class="btn btn-success" href="/news/" role="button">
+    <a class="btn btn-info" href="/news/" role="button">
       Read latest news
     </a>
   </p>
