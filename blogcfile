@@ -20,4 +20,7 @@ hello-world
 index
 
 [copy]
+assets/bootstrap.bundle.min.js
+assets/bootstrap.min.css
+assets/jquery.slim.min.js
 assets/custom.css
